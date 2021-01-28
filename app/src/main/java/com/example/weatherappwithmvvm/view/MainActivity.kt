@@ -6,6 +6,7 @@ import android.view.Menu
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import com.example.weatherappwithmvvm.R
+import com.example.weatherappwithmvvm.databinding.FragmentCurrentWheatherBinding
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
 
-        val searchItem = menu?.findItem(R.id.action_search)
+        val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
 
         // Configure the search info and add any event listeners...
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
     }

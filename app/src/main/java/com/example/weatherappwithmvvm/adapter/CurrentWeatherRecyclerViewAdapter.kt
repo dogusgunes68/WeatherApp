@@ -1,27 +1,29 @@
 package com.example.weatherappwithmvvm.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherappwithmvvm.R
+import com.example.weatherappwithmvvm.model.City
 
-class CurrentWeatherRecyclerViewAdapter : RecyclerView.Adapter<CurrentWeatherRecyclerViewAdapter.CityHolder>(){
+class CurrentWeatherRecyclerViewAdapter(val cities : ArrayList<City>) : RecyclerView.Adapter<CurrentWeatherRecyclerViewAdapter.CityHolder>(){
 
     class CityHolder(view : View) : RecyclerView.ViewHolder(view) {
-
-        
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.currentweather_row,parent,false)
+        return CityHolder(view)
     }
 
     override fun onBindViewHolder(holder: CityHolder, position: Int) {
-        TODO("Not yet implemented")
+
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cities.size
     }
 
 }

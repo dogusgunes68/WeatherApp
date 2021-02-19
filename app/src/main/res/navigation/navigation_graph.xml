@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph"
     app:startDestination="@id/currentWeatherFragment">
+
     <fragment
         android:id="@+id/currentWeatherFragment"
         android:name="com.example.weatherappwithmvvm.view.CurrentWeatherFragment"
@@ -9,9 +10,18 @@
         <action
             android:id="@+id/action_currentWeatherFragment_to_cityListFragment"
             app:destination="@id/cityListFragment" />
+        <argument
+            android:name="city"
+            app:argType="string"
+            android:defaultValue="Ankara" />
     </fragment>
     <fragment
         android:id="@+id/cityListFragment"
         android:name="com.example.weatherappwithmvvm.view.CityListFragment"
-        android:label="CityListFragment" />
+        android:label="CityListFragment" >
+        <action
+            android:id="@+id/action_cityListFragment_to_currentWeatherFragment"
+            app:destination="@id/currentWeatherFragment" />
+
+    </fragment>
 </navigation>

@@ -40,22 +40,22 @@ class CityListFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(CityListViewModel::class.java)
-
-        val cityList = arrayListOf("Aksaray","Ankara","İstanbul")
-
-        currentWeatherAdapter = CurrentWeatherAdapter(cityList)
-        binding.cityListRecycler.layoutManager = LinearLayoutManager(context)
-        binding.cityListRecycler.adapter = currentWeatherAdapter
-        currentWeatherAdapter.notifyDataSetChanged()
+        viewModel.getCitiesFromNet()
+        observeLiveData()
 
 
 
     }
 
     private fun observeLiveData(){
-        viewModel.citiees.observe(viewLifecycleOwner, Observer {cities->
+        viewModel.cities.observe(viewLifecycleOwner, Observer {cities->
             cities?.let {
-
+                if (cities.size != 0){
+                    currentWeatherAdapter = CurrentWeatherAdapter(cities)
+                    binding.cityListRecycler.layoutManager = LinearLayoutManager(context)
+                    binding.cityListRecycler.adapter = currentWeatherAdapter
+                    currentWeatherAdapter.notifyDataSetChanged()
+                }
             }
         })
     }

@@ -31,8 +31,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                /*
                 val action = CurrentWeatherFragmentDirections.actionCurrentWeatherFragmentToCityListFragment()
                 navigationController.navigate(action)
+
+                 */
                 return true
             }
 
@@ -44,31 +47,27 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             }
         })
 
-        /*
-        searchView.setOnSearchClickListener {
+        searchView?.setOnSearchClickListener {
             val action = CurrentWeatherFragmentDirections.actionCurrentWeatherFragmentToCityListFragment()
             navigationController.navigate(action)
         }
 
-         */
+/*
+        searchView?.setOnCloseListener(object : SearchView.OnCloseListener{
+            override fun onClose(): Boolean {
+                val action = CityListFragmentDirections.actionCityListFragmentToCurrentWeatherFragment("Aksaray")
+                navigationController.navigate(action)
 
-        searchView?.setOnClickListener {
-            val action = CurrentWeatherFragmentDirections.actionCurrentWeatherFragmentToCityListFragment()
-            navigationController.navigate(action)
-        }
+                return false
+            }
+
+        })
+
+ */
 
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onBackPressed() {
-        if (!searchView!!.isIconified){
-            searchView!!.isIconified = true
-
-        }else{
-            super.onBackPressed()
-        }
-
-    }
 
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,6 +105,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         return true
     }
 
+    override fun onBackPressed() {
+        if (!searchView?.isIconified!!) {
+            searchView?.setIconified(true)
+        } else {
+            super.onBackPressed()
+        }
+    }
 
 }
 

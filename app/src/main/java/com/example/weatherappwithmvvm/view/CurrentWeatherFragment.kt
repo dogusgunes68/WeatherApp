@@ -1,5 +1,7 @@
 package com.example.weatherappwithmvvm.view
 
+import android.graphics.Bitmap
+import android.graphics.Picture
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,6 +46,7 @@ class CurrentWeatherFragment : Fragment() {
 
         arguments?.let {
             city = CurrentWeatherFragmentArgs.fromBundle(it).city
+
         }
 
         viewModel = ViewModelProviders.of(this).get(CurrentWeatherViewModel::class.java)
@@ -77,12 +80,12 @@ class CurrentWeatherFragment : Fragment() {
                 binding.typeText.text = currentWeather.weather[0].main
                 binding.descriptionText.text = currentWeather.weather[0].description
 
-                /*
-                if (currentWeather.weather[0].main.equals("Sunny")){
 
+                if (currentWeather.weather[0].main.equals("Snow")){
+                    //binding.mainConstraintLayout.setBackgroundResource(R.drawable.sunny)
                 }
 
-                 */
+
 
             }
 

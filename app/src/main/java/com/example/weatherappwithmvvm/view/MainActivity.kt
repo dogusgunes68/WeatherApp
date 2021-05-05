@@ -10,9 +10,13 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.weatherappwithmvvm.R
+import com.example.weatherappwithmvvm.adapter.CurrentWeatherAdapter
 import com.example.weatherappwithmvvm.databinding.ActivityMainBinding
+import com.example.weatherappwithmvvm.model.City
+import com.example.weatherappwithmvvm.viewmodel.CityListViewModel
 
 var searchView : SearchView? = null
+var cityList = listOf<City>()
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
@@ -100,7 +104,15 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextChange(newText: String?): Boolean {
 
+        var newCityList = arrayListOf<City>()
+        for (city in cityList){
+            if (city.name.toLowerCase().contains(newText?.toLowerCase().toString())){
+                newCityList.add(city)
+            }
+        }
 
+        currentWeatherAdapter.changeList(newCityList)
+        currentWeatherAdapter.notifyDataSetChanged()
 
         return true
     }

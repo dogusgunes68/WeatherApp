@@ -12,6 +12,7 @@ import com.example.weatherappwithmvvm.adapter.CurrentWeatherAdapter
 import com.example.weatherappwithmvvm.databinding.FragmentCityListBinding
 import com.example.weatherappwithmvvm.viewmodel.CityListViewModel
 
+var currentWeatherAdapter = CurrentWeatherAdapter(arrayListOf())
 
 class CityListFragment() : Fragment() {
 
@@ -20,7 +21,7 @@ class CityListFragment() : Fragment() {
 
     private lateinit var viewModel : CityListViewModel
 
-    private lateinit var currentWeatherAdapter : CurrentWeatherAdapter
+    //private lateinit var currentWeatherAdapter : CurrentWeatherAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,6 @@ class CityListFragment() : Fragment() {
         observeLiveData()
 
 
-
     }
 
     private fun observeLiveData(){
@@ -56,6 +56,16 @@ class CityListFragment() : Fragment() {
                     binding.cityListRecycler.adapter = currentWeatherAdapter
                     currentWeatherAdapter.notifyDataSetChanged()
                 }
+            }
+        })
+
+        viewModel.loading.observe(viewLifecycleOwner, Observer { loading->
+            if (loading){
+                binding.cityListRecycler.visibility = View.GONE
+                binding.progressBar2.visibility = View.VISIBLE
+            }else{
+                binding.cityListRecycler.visibility = View.VISIBLE
+                binding.progressBar2.visibility = View.GONE
             }
         })
     }

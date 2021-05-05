@@ -23,7 +23,10 @@ class CurrentWeatherViewModel() :  ViewModel(){
         getDataFromNet(city)
     }
 
+
     fun getDataFromNet(city : String){
+
+        currentWeatherLoading.value = true
 
         disposable.add(currentWeatherApiService.getCurrentWeatherData(city)
                 .subscribeOn(Schedulers.newThread())

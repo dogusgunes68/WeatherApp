@@ -11,7 +11,7 @@ import com.example.weatherappwithmvvm.view.CityListFragmentDirections
 import com.example.weatherappwithmvvm.view.searchView
 
 
-class CurrentWeatherAdapter(var cities : ArrayList<City>) : RecyclerView.Adapter<CurrentWeatherAdapter.CityHolder>(),CityClickListener {
+class CurrentWeatherAdapter(var cities : ArrayList<City>) : RecyclerView.Adapter<CurrentWeatherAdapter.CityHolder>(){
 
     class CityHolder(val binding: CurrentweatherRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -50,8 +50,6 @@ class CurrentWeatherAdapter(var cities : ArrayList<City>) : RecyclerView.Adapter
 
     }
 
-    override fun cityClicked(view: View) {
-        TODO("Not yet implemented")
-    }
+
 
 }

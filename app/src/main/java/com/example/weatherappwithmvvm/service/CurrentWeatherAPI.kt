@@ -10,7 +10,7 @@ interface CurrentWeatherAPI {
 
     //https://raw.githubusercontent.com/dogusgunes68/Cities.json/master/Cities.json
 
-    @GET("weather?&appid=c1b61589ad3d6cd9c2b213282c2197e4")
+    @GET("weather?&appid=YOUR_API_KEY")
     fun getCurrentWeather(@Query("q") cityName : String) : Single<CurrentWeather>
 
     @GET("dogusgunes68/Cities.json/master/Cities.json")
